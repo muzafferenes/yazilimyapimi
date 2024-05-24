@@ -34,7 +34,7 @@ namespace WindowsFormsApp2
                 komut.Parameters.AddWithValue("@kelimeIng", textBox1.Text);
                 komut.Parameters.AddWithValue("@kelimeTr", textBox2.Text);
                 komut.Parameters.AddWithValue("@kelimeCumle", textBox3.Text);
-                komut.Parameters.AddWithValue("@kelimeResim", imageBytes); // Resim byte dizisini ekle
+                komut.Parameters.AddWithValue("@kelimeResim", imageBytes); 
                 komut.ExecuteNonQuery();
                 if (string.IsNullOrWhiteSpace(textBox1.Text) ||
         string.IsNullOrWhiteSpace(textBox2.Text) ||
@@ -64,6 +64,11 @@ namespace WindowsFormsApp2
                 MessageBox.Show("Lütfen tüm alanları doldurun ve bir resim seçin.");
                 return; 
             }
+            textBox1.Clear();   
+            textBox2.Clear();       
+            textBox3.Clear();
+            imgPath.Clear();
+            pictureBox1.Image = null; 
         }
 
         private void button2_Click(object sender, EventArgs e)
