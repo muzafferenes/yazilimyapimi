@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using SqlCommand = Microsoft.Data.SqlClient.SqlCommand;
 using SqlConnection = Microsoft.Data.SqlClient.SqlConnection;
 
@@ -34,6 +35,12 @@ namespace WindowsFormsApp2
                 komut.Parameters.AddWithValue("@kullaniciSifre", textBox2.Text);
                 komut.ExecuteNonQuery();
                 connect.Close();
+                if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+                    string.IsNullOrWhiteSpace(textBox2.Text) )
+                {
+                    MessageBox.Show("Lütfen tüm alanları doldurun ve bir resim seçin.");
+                    return;
+                }
                 MessageBox.Show("kayıt eklendi");
                 this.Close();
                 

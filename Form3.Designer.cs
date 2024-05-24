@@ -39,34 +39,38 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.geri = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.imgPath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(237, 266);
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(174, 266);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(159, 133);
+            this.pictureBox1.Size = new System.Drawing.Size(223, 144);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(237, 86);
+            this.textBox1.Location = new System.Drawing.Point(216, 59);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(142, 22);
             this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(237, 141);
+            this.textBox2.Location = new System.Drawing.Point(216, 110);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(142, 22);
             this.textBox2.TabIndex = 2;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(237, 197);
+            this.textBox3.Location = new System.Drawing.Point(216, 156);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(142, 22);
             this.textBox3.TabIndex = 3;
@@ -75,7 +79,7 @@
             // 
             this.klming.AutoSize = true;
             this.klming.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.klming.Location = new System.Drawing.Point(39, 86);
+            this.klming.Location = new System.Drawing.Point(12, 57);
             this.klming.Name = "klming";
             this.klming.Size = new System.Drawing.Size(169, 22);
             this.klming.TabIndex = 4;
@@ -85,7 +89,7 @@
             // 
             this.klmtr.AutoSize = true;
             this.klmtr.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.klmtr.Location = new System.Drawing.Point(39, 141);
+            this.klmtr.Location = new System.Drawing.Point(12, 108);
             this.klmtr.Name = "klmtr";
             this.klmtr.Size = new System.Drawing.Size(162, 22);
             this.klmtr.TabIndex = 5;
@@ -95,7 +99,7 @@
             // 
             this.klmcml.AutoSize = true;
             this.klmcml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.klmcml.Location = new System.Drawing.Point(39, 197);
+            this.klmcml.Location = new System.Drawing.Point(12, 156);
             this.klmcml.Name = "klmcml";
             this.klmcml.Size = new System.Drawing.Size(157, 22);
             this.klmcml.TabIndex = 6;
@@ -105,7 +109,7 @@
             // 
             this.klmrsm.AutoSize = true;
             this.klmrsm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.klmrsm.Location = new System.Drawing.Point(40, 266);
+            this.klmrsm.Location = new System.Drawing.Point(12, 209);
             this.klmrsm.Name = "klmrsm";
             this.klmrsm.Size = new System.Drawing.Size(143, 22);
             this.klmrsm.TabIndex = 7;
@@ -115,7 +119,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(278, 23);
+            this.label1.Location = new System.Drawing.Point(397, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 32);
             this.label1.TabIndex = 8;
@@ -141,6 +145,25 @@
             this.geri.TabIndex = 10;
             this.geri.Text = "GERİ";
             this.geri.UseVisualStyleBackColor = true;
+            this.geri.Click += new System.EventHandler(this.geri_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button2.Location = new System.Drawing.Point(12, 266);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(139, 35);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Dosya";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // imgPath
+            // 
+            this.imgPath.Location = new System.Drawing.Point(216, 211);
+            this.imgPath.Name = "imgPath";
+            this.imgPath.Size = new System.Drawing.Size(142, 22);
+            this.imgPath.TabIndex = 12;
             // 
             // Form3
             // 
@@ -148,6 +171,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.imgPath);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.geri);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
@@ -180,5 +205,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button geri;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox imgPath;
     }
 }

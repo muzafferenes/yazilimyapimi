@@ -6,6 +6,7 @@ using SqlConnection = Microsoft.Data.SqlClient.SqlConnection;
 using Microsoft.Data.SqlClient;
 using Microsoft.Data.Sql;
 using System.Drawing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp2
 {
@@ -42,9 +43,15 @@ namespace WindowsFormsApp2
 
             if (dr.Read())
             {
+                if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+                    string.IsNullOrWhiteSpace(textBox2.Text) )
+                {
+                    MessageBox.Show("Lütfen tüm alanları doldurun ve bir resim seçin.");
+                    return;
+                }
                 MessageBox.Show("Giriş Başarılı");
-                Form3 kelime = new Form3();
-                formgetir(kelime);
+                Form4 secenek = new Form4();
+                formgetir(secenek);
             }
             else
             {

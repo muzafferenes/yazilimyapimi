@@ -11,13 +11,17 @@ namespace WindowsFormsApp2
     {
         static string constring = @"Data Source=DESKTOP-OG41JC3;Initial Catalog=yazilim yapimi;Integrated Security=True;Trust Server Certificate=True";
         SqlConnection connect = new SqlConnection(constring);
-        OpenFileDialog openFileDialog = new OpenFileDialog(); // OpenFileDialog nesnesini tanımla
+        OpenFileDialog openFileDialog1 = new OpenFileDialog(); // OpenFileDialog nesnesini burada tanımla
+        byte[] imageBytes; // Resim dosyasını saklamak için byte dizisi
 
         public Form3()
         {
             InitializeComponent();
         }
-
+        private void formgetir(Form frm)
+        {
+            frm.Show();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -25,49 +29,78 @@ namespace WindowsFormsApp2
                 if (connect.State == ConnectionState.Closed)
                     connect.Open();
 
-                string kayit = $"insert into tblkelime(kelimeIng,kelimeTr,kelimeCumle) values (@kelimeIng,@kelimeTr,@kelimeCumle)";
+                string kayit = "insert into tblkelime(kelimeIng,kelimeTr,kelimeCumle,kelimeResim) values (@kelimeIng,@kelimeTr,@kelimeCumle,@kelimeResim)";
                 SqlCommand komut = new SqlCommand(kayit, connect);
                 komut.Parameters.AddWithValue("@kelimeIng", textBox1.Text);
                 komut.Parameters.AddWithValue("@kelimeTr", textBox2.Text);
                 komut.Parameters.AddWithValue("@kelimeCumle", textBox3.Text);
+                komut.Parameters.AddWithValue("@kelimeResim", imageBytes); // Resim byte dizisini ekle
                 komut.ExecuteNonQuery();
-
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+        string.IsNullOrWhiteSpace(textBox2.Text) ||
+        string.IsNullOrWhiteSpace(textBox3.Text) ||
+        imageBytes == null)
                 {
-                    string filePath = openFileDialog.FileName;
-                    pictureBox1.Image = Image.FromFile(filePath);
-
-                    byte[] imageBytes = File.ReadAllBytes(filePath);
-
-                    string username = "exampleUser"; // Bu değeri giriş yapılan kullanıcıdan alabilirsiniz.
-                    SavePhotoToDatabase(username, imageBytes);
+                    MessageBox.Show("Lütfen tüm alanları doldurun ve bir resim seçin.");
+                    return;
                 }
 
-                connect.Close();
                 MessageBox.Show("Kelime eklendi");
             }
             catch (Exception hata)
             {
                 MessageBox.Show("Hata meydana geldi: " + hata.Message);
             }
+            finally
+            {
+                if (connect.State == ConnectionState.Open)
+                    connect.Close();
+            }
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+        string.IsNullOrWhiteSpace(textBox2.Text) ||
+        string.IsNullOrWhiteSpace(textBox3.Text) ||
+        imageBytes == null)
+            {
+                MessageBox.Show("Lütfen tüm alanları doldurun ve bir resim seçin.");
+                return; 
+            }
         }
 
-        private void SavePhotoToDatabase(string kullaniciID, byte[] imageBytes)
+        private void button2_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(constring))
-            {
-                connection.Open();
+            Stream myStream = null;
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
 
-                string updateQuery = "UPDATE tblkelime SET kelimeResim = @kelimeResim WHERE kullaniciID = @kullaniciID";
-                using (SqlCommand command = new SqlCommand(updateQuery, connection))
+            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                try
                 {
-                    command.Parameters.AddWithValue("@kullaniciID", kullaniciID);
-                    command.Parameters.AddWithValue("@kelimeResim", imageBytes);
-                    command.ExecuteNonQuery();
+                    string fileName = openFileDialog1.FileName;
+                    imgPath.Text = fileName;
+                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    {
+                        if (myStream.Length > 5200000)
+                        {
+                            MessageBox.Show("Hata: Dosya boyutu büyük.");
+                        }
+                        else
+                        {
+                            pictureBox1.Load(fileName);
+                            imageBytes = File.ReadAllBytes(fileName); // Resmi byte dizisine oku
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Hata meydana geldi.");
                 }
             }
+        }
+
+        private void geri_Click(object sender, EventArgs e)
+        {
+            Form4 geri = new Form4();
+            formgetir(geri);
         }
     }
 }

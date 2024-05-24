@@ -25,5 +25,11 @@ namespace WindowsFormsApp2
             Form3 klmekle = new Form3();
             formgetir(klmekle);
         }
+
+        private void snvgiris_Click(object sender, EventArgs e)
+        {
+            Form5 sinav = new Form5();
+            formgetir(sinav);
+        }
     }
 }

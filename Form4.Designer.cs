@@ -52,6 +52,7 @@
             this.snvgiris.TabIndex = 1;
             this.snvgiris.Text = "Sınava Gir";
             this.snvgiris.UseVisualStyleBackColor = true;
+            this.snvgiris.Click += new System.EventHandler(this.snvgiris_Click);
             // 
             // Form4
             // 
