@@ -18,11 +18,22 @@ namespace WindowsFormsApp2
         public Form1()
         {
             InitializeComponent();
-            
+            this.DoubleBuffered = true;
+            label1.BackColor = Color.Transparent;
+            label2.BackColor = Color.Transparent;
+            label3.BackColor = Color.Transparent;
         }
         private void formgetir(Form frm)
         {
             frm.Show();
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            using (System.Drawing.Drawing2D.LinearGradientBrush brush = new System.Drawing.Drawing2D.LinearGradientBrush(this.ClientRectangle, Color.LimeGreen, Color.PaleGreen, 25f))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

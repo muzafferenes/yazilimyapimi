@@ -12,8 +12,17 @@ namespace WindowsFormsApp2
 {
     public partial class Form4 : Form
     {
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            using (System.Drawing.Drawing2D.LinearGradientBrush brush = new System.Drawing.Drawing2D.LinearGradientBrush(this.ClientRectangle, Color.LimeGreen, Color.PaleGreen, 25f))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
+        }
         public Form4()
         {
+            this.DoubleBuffered = true;
             InitializeComponent();
         }
         private void formgetir(Form frm)

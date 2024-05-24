@@ -13,10 +13,23 @@ namespace WindowsFormsApp2
         SqlConnection connect = new SqlConnection(constring);
         OpenFileDialog openFileDialog1 = new OpenFileDialog(); // OpenFileDialog nesnesini burada tanımla
         byte[] imageBytes; // Resim dosyasını saklamak için byte dizisi
-
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            using (System.Drawing.Drawing2D.LinearGradientBrush brush = new System.Drawing.Drawing2D.LinearGradientBrush(this.ClientRectangle, Color.LimeGreen, Color.PaleGreen, 25f))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
+        }
         public Form3()
         {
+            this.DoubleBuffered = true;
             InitializeComponent();
+            klmcml.BackColor = Color.Transparent;
+            klming.BackColor = Color.Transparent;
+            klmrsm.BackColor = Color.Transparent;
+            klmtr.BackColor = Color.Transparent;
+            label1.BackColor = Color.Transparent;
         }
         private void formgetir(Form frm)
         {
